@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Horas Trabalhadas</title>
+    <style>
+        /* Estilos para o corpo (body) */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            color: #fff; /* Define a cor do texto como branco para melhor visibilidade em uma imagem de fundo */
+            background-color: #000000; /* Adiciona um fundo preto */
+            display: flex;
+            align-items: center; /* Centraliza verticalmente os elementos */
+            justify-content: center; /* Centraliza horizontalmente os elementos */
+            height:200vh; /* Define a altura do corpo como 100% da altura da viewport */
+        }
+
+        /* Estilos para o contêiner principal */
+        .container {
+            padding: 50px;
+            border-radius: 50px;
+            color: #fff; /* Define a cor do texto como branco dentro do contêiner */
+            background-color: #00000036; /* Adiciona uma cor de fundo escura */
+            display: flex;
+            align-items: center; /* Centraliza verticalmente os elementos */
+            flex-direction: column; /* Organiza os elementos em coluna */
+        }
+
+        /* Estilos para a seção de slots e resultado */
+        .slots-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            width: 100%; /* Ocupa a largura total do contêiner */
+        }
+
+        /* Estilos para coluna de entrada */
+        .entrada-column,
+        .saida-column {
+            display: flex;
+            flex-direction: column;
+            width: 50%; /* Ocupa metade da largura da tela */
+        }
+
+        /* Estilos para rótulos */
+        label {
+            color: #a9a9a9; /* Define a cor do rótulo como um cinza claro */
+        }
+
+        /* Estilos para input[type="time"] */
+        input[type="time"] {
+            background-color: #282828; /* Define a cor de fundo do input como um cinza escuro */
+            color: #ff0000; /* Define a cor do texto do input como branco */
+            border: 1px solid #555; /* Define a cor da borda do input como um cinza mais escuro */
+            border-radius: 5px;
+            padding: 5px;
+            margin: 5px;
+            width: calc(100% - 12px); /* Ajusta a largura dos inputs para 100% - 12px para considerar margin e padding */
+            box-sizing: border-box; /* Garante que a largura inclua padding e borda */
+        }
+
+        /* Estilos para botões */
+        button {
+            background-color: #4caf50; /* Define a cor de fundo do botão como verde */
+            color: #fff; /* Define a cor do texto do botão como branco */
+            padding: 10px; /* Ajusta o preenchimento do botão */
+            border: none;
+            border-radius: 10px;
+            margin: 10px auto; /* Centraliza os botões horizontalmente e adiciona margem superior e inferior */
+            cursor: pointer;
+            width: calc(30% - 12px); /* Ajusta a largura dos botões para 30% - 12px para considerar margin e padding */
+            box-sizing: border-box; /* Garante que a largura inclua padding e borda */
+        }
+
+        /* Estilos para a seção de horas totais */
+        h2 {
+            color: #ffcc00; /* Define a cor do título como amarelo/laranja */
+        }
+
+        /* Estilos para parágrafos de resultados */
+        p {
+            color: #a9a9a9; /* Define a cor do texto do parágrafo como cinza claro */
+        }
+
+        /* Estilos para a régua horizontal */
+        hr {
+            border-color: #555; /* Define a cor da régua horizontal como um cinza mais escuro */
+            margin: 20px 0; /* Adiciona margem acima e abaixo da régua */
+            width: 100%; /* Define a largura da régua como 100% */
+        }
+
+        /* Estilos para os slots individuais */
+        .slot div {
+            width: 100%; /* Define a largura de cada slot individual como 100% */
+            margin: 5px 0; /* Adiciona margem acima e abaixo de cada slot */
+        }
+
+        /* Estilos para o total de horas */
+        #totalResultado {
+            margin-top: 20px;
+        }
+
+        /* Estilos para a imagem de fundo */
+        .background-image {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Coloca a imagem de fundo atrás do conteúdo principal */
+            opacity: 0.3; /* Ajusta a opacidade da imagem de fundo conforme necessário */
+        }
+    </style>
+</head>
+<body>
+    <!-- Imagem de fundo -->
+    <img class="background-image" src="https://media.discordapp.net/attachments/1082825000240820363/1203094341883658240/image-Photoroom.png?ex=65cfd7eb&is=65bd62eb&hm=d467e01c0b5629bed2667d8b323b42d25d96fb9b474632fa9689acb96918ec0a&=&format=webp&quality=lossless&width=617&height=473" alt="Imagem de fundo">
+
+    <!-- Contêiner principal -->
+    <div class="container">
+
+        <!-- Título principal -->
+        <h1>Calculadora de Horas Trabalhadas</h1>
+
+        <!-- Seção de slots e resultado -->
+        <div class="slots-section">
+
+            <!-- Coluna de Entradas -->
+            <div class="entrada-column">
+                <!-- Slot 1 -->
+                <div class="slot">
+                    <div>
+                        <!-- Rótulo e input para Hora de Entrada no Slot 1 -->
+                        <label for="horaEntrada1">Entrada:</label>
+                        <input type="time" id="horaEntrada1">
+                    </div>
+
+                    <!-- Slot 2 -->
+                    <div class="slot">
+                        <div>
+                            <!-- Rótulo e input para Hora de Entrada no Slot 2 -->
+                            <label for="horaEntrada2">Entrada:</label>
+                            <input type="time" id="horaEntrada2">
+                        </div>
+
+                        <!-- Slot 3 -->
+                        <div class="slot">
+                            <div>
+                                <!-- Rótulo e input para Hora de Entrada no Slot 3 -->
+                                <label for="horaEntrada3">Entrada:</label>
+                                <input type="time" id="horaEntrada3">
+                            </div>
+                        </div>
+
+                        <!-- Slot 4 -->
+                        <div class="slot">
+                            <div>
+                                <!-- Rótulo e input para Hora de Entrada no Slot 4 -->
+                                <label for="horaEntrada4">Entrada:</label>
+                                <input type="time" id="horaEntrada4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna de Saídas -->
+            <div class="saida-column">
+                <!-- Slot 1 -->
+                <div class="slot">
+                    <div>
+                        <!-- Rótulo e input para Hora de Saída no Slot 1 -->
+                        <label for="horaSaida1">Saída:</label>
+                        <input type="time" id="horaSaida1">
+                    </div>
+
+                    <!-- Slot 2 -->
+                    <div class="slot">
+                        <div>
+                            <!-- Rótulo e input para Hora de Saída no Slot 2 -->
+                            <label for="horaSaida2">Saída:</label>
+                            <input type="time" id="horaSaida2">
+                        </div>
+
+                        <!-- Slot 3 -->
+                        <div class="slot">
+                            <div>
+                                <!-- Rótulo e input para Hora de Saída no Slot 3 -->
+                                <label for="horaSaida3">Saída:</label>
+                                <input type="time" id="horaSaida3">
+                            </div>
+                        </div>
+
+                        <!-- Slot 4 -->
+                        <div class="slot">
+                            <div>
+                                <!-- Rótulo e input para Hora de Saída no Slot 4 -->
+                                <label for="horaSaida4">Saída:</label>
+                                <input type="time" id="horaSaida4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Régua horizontal para separar os slots da seção de horas totais -->
+        <hr>
+
+        <!-- Seção de horas totais -->
+        <div>
+            <h2>Total de Horas Trabalhadas</h2> <!-- Título para a seção de horas totais -->
+            <p id="totalResultado"></p> <!-- Parágrafo para exibir o total de horas trabalhadas -->
+        </div>
+
+        <!-- Botão Calcular Tudo -->
+        <button onclick="calcularTudo()">Calcular Tudo</button>
+
+        <!-- Botão Limpar -->
+        <button onclick="limpar()">Limpar</button>
+
+    </div>
+
+    <!-- Script JavaScript para as funcionalidades da calculadora -->
+    <script>
+        var totalHoras = 0; // Variável para armazenar o total de horas
+
+        // Função para calcular a diferença entre entrada e saída em horas e minutos
+        function calcularHoras(entrada, saida) {
+            var diferenca = Math.abs(saida - entrada) / 1000; // Diferença em segundos
+            var horasTrabalhadas = Math.floor(diferenca / 3600);
+            var minutosTrabalhados = Math.floor((diferenca % 3600) / 60);
+            return {
+                horas: horasTrabalhadas,
+                minutos: minutosTrabalhados
+            };
+        }
+
+        // Função para calcular o total de horas trabalhadas em todos os slots
+        function calcularTudo() {
+            totalHoras = 0;
+
+            // Loop para iterar sobre os 4 slots
+            for (var i = 1; i <= 4; i++) {
+                var horaEntrada = document.getElementById("horaEntrada" + i).value;
+                var horaSaida = document.getElementById("horaSaida" + i).value;
+
+                var entrada = new Date("2022-01-01 " + horaEntrada);
+                var saida = new Date("2022-01-01 " + horaSaida);
+
+                // Ajuste caso a saída seja anterior à entrada (no dia seguinte)
+                if (saida < entrada) {
+                    saida.setHours(saida.getHours() + 24);
+                }
+
+                var resultado = calcularHoras(entrada, saida);
+
+                // Atualiza o total de horas
+                totalHoras += resultado.horas + resultado.minutos / 60;
+            }
+
+            // Exibe o total de horas trabalhadas
+            document.getElementById("totalResultado").innerHTML = "<h2>Total de Horas Trabalhadas</h2><p>" + Math.floor(totalHoras) + " horas e " + Math.round((totalHoras % 1) * 60) + " minutos.</p>";
+        }
+
+        // Função para limpar os valores de entrada e resultados
+        function limpar() {
+            // Limpar valores de entrada e resultados para os 4 slots
+            for (var i = 1; i <= 4; i++) {
+                document.getElementById("horaEntrada" + i).value = "";
+                document.getElementById("horaSaida" + i).value = "";
+            }
+
+            // Resetar total de horas
+            totalHoras = 0;
+            document.getElementById("totalResultado").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
